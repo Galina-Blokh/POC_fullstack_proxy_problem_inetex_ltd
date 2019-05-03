@@ -10,6 +10,23 @@ import { AllUsersComponent } from './content/all-users/all-users.component';
 import { AddNewComponent } from './content/add-new/add-new.component';
 import {HttpClientModule} from "@angular/common/http";
 
+import {Router, RouterModule, Routes} from "@angular/router";
+
+const routes: Routes = [
+  {
+    path: 'users/all',
+    component: AllUsersComponent
+  },
+  {
+    path: 'users/add',
+    component: AddNewComponent
+  },
+  {
+    path: '',
+    component: AllUsersComponent
+  }
+];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +39,8 @@ import {HttpClientModule} from "@angular/common/http";
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]

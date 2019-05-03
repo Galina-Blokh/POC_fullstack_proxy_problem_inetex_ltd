@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import User from "../../model/User";
+import {UserHttpService} from "../../user-http.service";
 
 @Component({
   selector: 'app-all-users',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllUsersComponent implements OnInit {
 
-  constructor() { }
+  public users: User [] = [];
 
-  ngOnInit() {
+  constructor(private userHttpService: UserHttpService) {
+
   }
 
+  getUsers(){
+    return this.userHttpService
+      .getUsersObservable()
+      .subscribe(data => this.users = data);
+
+  }
+  ngOnInit() {
+    this.getUsers();
+  }
 }
